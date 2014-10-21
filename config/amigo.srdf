@@ -14,34 +14,34 @@
         <joint name="shoulder_yaw_joint_right" />
         <joint name="shoulder_pitch_joint_right" />
         <joint name="shoulder_roll_joint_right" />
-        <joint name="elbow_extra_block2_joint_right" />
-        <joint name="elbow_extra_block_joint_right" />
+        <!--<joint name="elbow_extra_block2_joint_right" />
+        <joint name="elbow_extra_block_joint_right" />-->
         <joint name="elbow_pitch_joint_right" />
         <joint name="elbow_roll_joint_right" />
-        <joint name="fore_arm_top_joint_right" />
+        <!--<joint name="fore_arm_top_joint_right" />-->
         <joint name="wrist_pitch_joint_right" />
-        <joint name="wrist_to_hand_block_joint_right" />
-        <joint name="wrist_visual_joint_right" />
+        <!--<joint name="wrist_to_hand_block_joint_right" />
+        <joint name="wrist_visual_joint_right" />-->
         <joint name="wrist_yaw_joint_right" />
         <joint name="grippoint_joint_right" />
-        <joint name="upper_arm_top_joint_right" />
+        <!--<joint name="upper_arm_top_joint_right" />-->
     </group>
     <group name="left_arm">
         <joint name="shoulder_mount_joint_left" />
         <joint name="shoulder_yaw_joint_left" />
         <joint name="shoulder_pitch_joint_left" />
         <joint name="shoulder_roll_joint_left" />
-        <joint name="elbow_extra_block2_joint_left" />
-        <joint name="elbow_extra_block_joint_left" />
+        <!--<joint name="elbow_extra_block2_joint_left" />
+        <joint name="elbow_extra_block_joint_left" />-->
         <joint name="elbow_pitch_joint_left" />
         <joint name="elbow_roll_joint_left" />
-        <joint name="fore_arm_top_joint_left" />
+        <!--<joint name="fore_arm_top_joint_left" />-->
         <joint name="wrist_pitch_joint_left" />
-        <joint name="wrist_to_hand_block_joint_left" />
-        <joint name="wrist_visual_joint_left" />
+        <!--<joint name="wrist_to_hand_block_joint_left" />
+        <joint name="wrist_visual_joint_left" />-->
         <joint name="wrist_yaw_joint_left" />
         <joint name="grippoint_joint_left" />
-        <joint name="upper_arm_top_joint_left" />
+        <!--<joint name="upper_arm_top_joint_left" />-->
     </group>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="back_laser" link2="back_lasertop" reason="Adjacent" />
