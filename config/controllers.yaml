@@ -1,0 +1,33 @@
+controller_list:
+    - name: amigo/left_arm
+      reference_topic: "/amigo/left_arm/references"
+      measurement_topic: "/amigo/left_arm/measurements"
+      action_ns: joint_trajectory_action
+      type: FollowJointTrajectory
+      default: true
+      joints:
+          - shoulder_yaw_joint_left
+          - shoulder_pitch_joint_left
+          - shoulder_roll_joint_left
+          - elbow_pitch_joint_left
+          - elbow_roll_joint_left
+          - wrist_pitch_joint_left
+          - wrist_yaw_joint_left
+      parameter_file_package: "amigo_controller_configuration_gazebo"
+      parameter_file_path: "/parameters/arm_controller_left.yaml"
+    - name: amigo/right_arm
+      reference_topic: "/amigo/right_arm/references"
+      measurement_topic: "/amigo/right_arm/measurements"
+      action_ns: joint_trajectory_action
+      type: FollowJointTrajectory
+      default: true
+      joints:
+          - shoulder_yaw_joint_right
+          - shoulder_pitch_joint_right
+          - shoulder_roll_joint_right
+          - elbow_pitch_joint_right
+          - elbow_roll_joint_right
+          - wrist_pitch_joint_right
+          - wrist_yaw_joint_right
+      parameter_file_package: "amigo_controller_configuration_gazebo"
+      parameter_file_path: "/parameters/arm_controller_right.yaml"
