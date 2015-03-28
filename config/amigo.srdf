@@ -31,7 +31,7 @@
         <joint name="wrist_yaw_joint_left" />
         <joint name="grippoint_joint_left" />
     </group>
-    <group name="all">
+    <group name="body">
         <joint name="shoulder_mount_joint_left" />
         <joint name="shoulder_yaw_joint_left" />
         <joint name="shoulder_pitch_joint_left" />
