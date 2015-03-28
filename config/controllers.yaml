@@ -1,7 +1,7 @@
 controller_list:
-    - name: amigo/left_arm
-      reference_topic: "/amigo/left_arm/references"
-      measurement_topic: "/amigo/left_arm/measurements"
+    - name: left_arm
+      reference_topic: "left_arm/references"
+      measurement_topic: "left_arm/measurements"
       action_ns: joint_trajectory_action
       type: FollowJointTrajectory
       default: true
@@ -15,9 +15,9 @@ controller_list:
           - wrist_yaw_joint_left
       parameter_file_package: "amigo_controller_configuration_gazebo"
       parameter_file_path: "/parameters/arm_controller_left.yaml"
-    - name: amigo/right_arm
-      reference_topic: "/amigo/right_arm/references"
-      measurement_topic: "/amigo/right_arm/measurements"
+    - name: right_arm
+      reference_topic: "right_arm/references"
+      measurement_topic: "right_arm/measurements"
       action_ns: joint_trajectory_action
       type: FollowJointTrajectory
       default: true
@@ -31,9 +31,9 @@ controller_list:
           - wrist_yaw_joint_right
       parameter_file_package: "amigo_controller_configuration_gazebo"
       parameter_file_path: "/parameters/arm_controller_right.yaml"
-    - name: amigo
-      reference_topic: "/amigo/body/references"
-      measurement_topic: "/amigo/body/measurements"
+    - name: body
+      reference_topic: "body/references"
+      measurement_topic: "body/measurements"
       action_ns: joint_trajectory_action
       type: FollowJointTrajectory
       default: true
