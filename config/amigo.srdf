@@ -29,9 +29,30 @@
         <joint name="elbow_roll_joint_left" />
         <joint name="wrist_pitch_joint_left" />
         <joint name="wrist_yaw_joint_left" />
-	<joint name="grippoint_joint_left" />
+        <joint name="grippoint_joint_left" />
     </group>
-    <!--DISABLE COLLISIONS: Disable all collisions for fast calculations. Comment the once we want to check (arms with body for example). -->
+    <group name="all">
+        <joint name="shoulder_mount_joint_left" />
+        <joint name="shoulder_yaw_joint_left" />
+        <joint name="shoulder_pitch_joint_left" />
+        <joint name="shoulder_roll_joint_left" />
+        <joint name="elbow_pitch_joint_left" />
+        <joint name="elbow_roll_joint_left" />
+        <joint name="wrist_pitch_joint_left" />
+        <joint name="wrist_yaw_joint_left" />
+        <joint name="grippoint_joint_left" />
+        <joint name="shoulder_mount_joint_right" />
+        <joint name="shoulder_yaw_joint_right" />
+        <joint name="shoulder_pitch_joint_right" />
+        <joint name="shoulder_roll_joint_right" />
+        <joint name="elbow_pitch_joint_right" />
+        <joint name="elbow_roll_joint_right" />
+        <joint name="wrist_pitch_joint_right" />
+        <joint name="wrist_yaw_joint_right" />
+        <joint name="grippoint_joint_right" />
+        <joint name="torso_joint" />
+    </group>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="torso" link2="torso_slider" reason="Never" />
     <disable_collisions link1="torso" link2="base" reason="Never" />
     <disable_collisions link1="torso" link2="base_link" reason="Never" />
