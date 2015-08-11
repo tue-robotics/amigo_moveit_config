@@ -9,60 +9,18 @@
     <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
     <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
     <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
-    <group name="right_arm">
-        <joint name="shoulder_mount_joint_right" />
-        <joint name="shoulder_yaw_joint_right" />
-        <joint name="shoulder_pitch_joint_right" />
-        <joint name="shoulder_roll_joint_right" />
-        <joint name="elbow_pitch_joint_right" />
-        <joint name="elbow_roll_joint_right" />
-        <joint name="wrist_pitch_joint_right" />
-        <joint name="wrist_yaw_joint_right" />
-        <joint name="grippoint_joint_right" />
-    </group>
     <group name="left_arm">
-        <joint name="shoulder_mount_joint_left" />
-        <joint name="shoulder_yaw_joint_left" />
-        <joint name="shoulder_pitch_joint_left" />
-        <joint name="shoulder_roll_joint_left" />
-        <joint name="elbow_pitch_joint_left" />
-        <joint name="elbow_roll_joint_left" />
-        <joint name="wrist_pitch_joint_left" />
-        <joint name="wrist_yaw_joint_left" />
-        <joint name="grippoint_joint_left" />
-    </group>
-    <group name="body">
-        <joint name="shoulder_mount_joint_left" />
-        <joint name="shoulder_yaw_joint_left" />
-        <joint name="shoulder_pitch_joint_left" />
-        <joint name="shoulder_roll_joint_left" />
-        <joint name="elbow_pitch_joint_left" />
-        <joint name="elbow_roll_joint_left" />
-        <joint name="wrist_pitch_joint_left" />
-        <joint name="wrist_yaw_joint_left" />
-        <joint name="grippoint_joint_left" />
-        <joint name="shoulder_mount_joint_right" />
-        <joint name="shoulder_yaw_joint_right" />
-        <joint name="shoulder_pitch_joint_right" />
-        <joint name="shoulder_roll_joint_right" />
-        <joint name="elbow_pitch_joint_right" />
-        <joint name="elbow_roll_joint_right" />
-        <joint name="wrist_pitch_joint_right" />
-        <joint name="wrist_yaw_joint_right" />
-        <joint name="grippoint_joint_right" />
-        <joint name="torso_joint" />
+        <chain base_link="amigo/base_link" tip_link="amigo/grippoint_left" />
     </group>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="right_tcp" parent_link="amigo/grippoint_right" group="right_arm" />
-    <end_effector name="left_tcp" parent_link="amigo/grippoint_left" group="left_arm" />
+    <end_effector name="left_tcp" parent_link="amigo/grippoint_left" group="left_arm" parent_group="left_arm" />
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
-    <virtual_joint name="map_joint" type="planar" parent_frame="map" child_link="amigo/base_link" />
+    <virtual_joint name="virtual_joint" type="planar" parent_frame="amigo/odom" child_link="amigo/base_link" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="amigo/back_laser" link2="amigo/back_lasertop" reason="Adjacent" />
     <disable_collisions link1="amigo/back_laser" link2="amigo/base" reason="Adjacent" />
     <disable_collisions link1="amigo/back_laser" link2="amigo/base_kinect/openni_camera" reason="Never" />
     <disable_collisions link1="amigo/back_laser" link2="amigo/base_laser" reason="Never" />
-    <disable_collisions link1="amigo/back_laser" link2="amigo/base_link" reason="Never" />
     <disable_collisions link1="amigo/back_laser" link2="amigo/base_plate" reason="Never" />
     <disable_collisions link1="amigo/back_laser" link2="amigo/clavicles" reason="Never" />
     <disable_collisions link1="amigo/back_laser" link2="amigo/elbow_extra_block2_left" reason="Never" />
@@ -83,6 +41,8 @@
     <disable_collisions link1="amigo/back_laser" link2="amigo/finger2_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/back_laser" link2="amigo/finger2_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/back_laser" link2="amigo/finger2_right" reason="Never" />
+    <disable_collisions link1="amigo/back_laser" link2="amigo/finger2_tip_left" reason="Never" />
+    <disable_collisions link1="amigo/back_laser" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/back_laser" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/back_laser" link2="amigo/finger2_tip_right" reason="Never" />
     <disable_collisions link1="amigo/back_laser" link2="amigo/fore_arm_left" reason="Never" />
@@ -126,7 +86,6 @@
     <disable_collisions link1="amigo/back_lasertop" link2="amigo/base" reason="Never" />
     <disable_collisions link1="amigo/back_lasertop" link2="amigo/base_kinect/openni_camera" reason="Never" />
     <disable_collisions link1="amigo/back_lasertop" link2="amigo/base_laser" reason="Never" />
-    <disable_collisions link1="amigo/back_lasertop" link2="amigo/base_link" reason="Never" />
     <disable_collisions link1="amigo/back_lasertop" link2="amigo/base_plate" reason="Never" />
     <disable_collisions link1="amigo/back_lasertop" link2="amigo/clavicles" reason="Never" />
     <disable_collisions link1="amigo/back_lasertop" link2="amigo/elbow_extra_block2_left" reason="Never" />
@@ -147,6 +106,7 @@
     <disable_collisions link1="amigo/back_lasertop" link2="amigo/finger2_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/back_lasertop" link2="amigo/finger2_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/back_lasertop" link2="amigo/finger2_right" reason="Never" />
+    <disable_collisions link1="amigo/back_lasertop" link2="amigo/finger2_tip_left" reason="Never" />
     <disable_collisions link1="amigo/back_lasertop" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/back_lasertop" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/back_lasertop" link2="amigo/finger2_tip_right" reason="Never" />
@@ -190,8 +150,7 @@
     <disable_collisions link1="amigo/back_lasertop" link2="amigo/wrist_visual_right" reason="Never" />
     <disable_collisions link1="amigo/base" link2="amigo/base_kinect/openni_camera" reason="Adjacent" />
     <disable_collisions link1="amigo/base" link2="amigo/base_laser" reason="Adjacent" />
-    <disable_collisions link1="amigo/base" link2="amigo/base_link" reason="Adjacent" />
-    <disable_collisions link1="amigo/base" link2="amigo/base_plate" reason="Default" />
+    <disable_collisions link1="amigo/base" link2="amigo/base_plate" reason="Adjacent" />
     <disable_collisions link1="amigo/base" link2="amigo/clavicles" reason="Never" />
     <disable_collisions link1="amigo/base" link2="amigo/elbow_extra_block2_left" reason="Never" />
     <disable_collisions link1="amigo/base" link2="amigo/elbow_extra_block2_right" reason="Never" />
@@ -199,16 +158,30 @@
     <disable_collisions link1="amigo/base" link2="amigo/elbow_extra_block_right" reason="Never" />
     <disable_collisions link1="amigo/base" link2="amigo/elbow_link4_left" reason="Never" />
     <disable_collisions link1="amigo/base" link2="amigo/elbow_link4_right" reason="Never" />
+    <disable_collisions link1="amigo/base" link2="amigo/finger1_left" reason="Always" />
+    <disable_collisions link1="amigo/base" link2="amigo/finger1_phalanx_left" reason="Always" />
     <disable_collisions link1="amigo/base" link2="amigo/finger1_phalanx_right" reason="Default" />
     <disable_collisions link1="amigo/base" link2="amigo/finger1_right" reason="Default" />
+    <disable_collisions link1="amigo/base" link2="amigo/finger1_tip_left" reason="Always" />
+    <disable_collisions link1="amigo/base" link2="amigo/finger1_tip_phalanx_left" reason="Always" />
+    <disable_collisions link1="amigo/base" link2="amigo/finger1_tip_phalanx_right" reason="Always" />
     <disable_collisions link1="amigo/base" link2="amigo/finger1_tip_right" reason="Default" />
     <disable_collisions link1="amigo/base" link2="amigo/finger2_left" reason="Default" />
     <disable_collisions link1="amigo/base" link2="amigo/finger2_phalanx_left" reason="Default" />
+    <disable_collisions link1="amigo/base" link2="amigo/finger2_phalanx_right" reason="Always" />
+    <disable_collisions link1="amigo/base" link2="amigo/finger2_right" reason="Always" />
     <disable_collisions link1="amigo/base" link2="amigo/finger2_tip_left" reason="Default" />
+    <disable_collisions link1="amigo/base" link2="amigo/finger2_tip_phalanx_left" reason="Always" />
+    <disable_collisions link1="amigo/base" link2="amigo/finger2_tip_phalanx_right" reason="Always" />
+    <disable_collisions link1="amigo/base" link2="amigo/finger2_tip_right" reason="Always" />
+    <disable_collisions link1="amigo/base" link2="amigo/fore_arm_left" reason="Always" />
+    <disable_collisions link1="amigo/base" link2="amigo/fore_arm_right" reason="Always" />
     <disable_collisions link1="amigo/base" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/base" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/base" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/base" link2="amigo/grippoint_right" reason="Never" />
+    <disable_collisions link1="amigo/base" link2="amigo/hand_left" reason="Always" />
+    <disable_collisions link1="amigo/base" link2="amigo/hand_right" reason="Always" />
     <disable_collisions link1="amigo/base" link2="amigo/head" reason="Never" />
     <disable_collisions link1="amigo/base" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/base" link2="amigo/logo" reason="Never" />
@@ -235,8 +208,11 @@
     <disable_collisions link1="amigo/base" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/base" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/base" link2="amigo/wrist_link6_right" reason="Never" />
+    <disable_collisions link1="amigo/base" link2="amigo/wrist_to_hand_block_left" reason="Always" />
+    <disable_collisions link1="amigo/base" link2="amigo/wrist_to_hand_block_right" reason="User" />
+    <disable_collisions link1="amigo/base" link2="amigo/wrist_visual_left" reason="Always" />
+    <disable_collisions link1="amigo/base" link2="amigo/wrist_visual_right" reason="Always" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/base_laser" reason="Never" />
-    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/base_link" reason="Never" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/base_plate" reason="Never" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/clavicles" reason="Never" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/elbow_extra_block2_left" reason="Never" />
@@ -245,14 +221,30 @@
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/elbow_extra_block_right" reason="Never" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/elbow_link4_left" reason="Never" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/elbow_link4_right" reason="Never" />
-    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger2_left" reason="Never" />
-    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger2_phalanx_left" reason="Never" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger1_left" reason="Never" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger1_phalanx_left" reason="Never" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger1_phalanx_right" reason="Never" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger1_right" reason="Never" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger1_tip_left" reason="User" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger1_tip_phalanx_left" reason="User" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger1_tip_phalanx_right" reason="User" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger1_tip_right" reason="User" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger2_left" reason="User" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger2_phalanx_left" reason="User" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger2_phalanx_right" reason="User" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger2_right" reason="Never" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger2_tip_left" reason="User" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger2_tip_phalanx_left" reason="User" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger2_tip_phalanx_right" reason="User" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/finger2_tip_right" reason="User" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/fore_arm_left" reason="Never" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/fore_arm_right" reason="Never" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/grippoint_right" reason="Never" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/hand_left" reason="Never" />
+    <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/hand_right" reason="Never" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/head" reason="Never" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/lasertop" reason="Default" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/logo" reason="Never" />
@@ -283,7 +275,6 @@
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/wrist_to_hand_block_right" reason="Never" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/wrist_visual_left" reason="Never" />
     <disable_collisions link1="amigo/base_kinect/openni_camera" link2="amigo/wrist_visual_right" reason="Never" />
-    <disable_collisions link1="amigo/base_laser" link2="amigo/base_link" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/base_plate" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/clavicles" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/elbow_extra_block2_left" reason="Never" />
@@ -298,12 +289,16 @@
     <disable_collisions link1="amigo/base_laser" link2="amigo/finger1_right" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/finger1_tip_left" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/finger1_tip_phalanx_left" reason="Never" />
+    <disable_collisions link1="amigo/base_laser" link2="amigo/finger1_tip_phalanx_right" reason="Never" />
+    <disable_collisions link1="amigo/base_laser" link2="amigo/finger1_tip_right" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/finger2_left" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/finger2_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/finger2_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/finger2_right" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/finger2_tip_left" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
+    <disable_collisions link1="amigo/base_laser" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
+    <disable_collisions link1="amigo/base_laser" link2="amigo/finger2_tip_right" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/fore_arm_left" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/fore_arm_right" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/fore_arm_top_left" reason="Never" />
@@ -342,68 +337,6 @@
     <disable_collisions link1="amigo/base_laser" link2="amigo/wrist_to_hand_block_right" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/wrist_visual_left" reason="Never" />
     <disable_collisions link1="amigo/base_laser" link2="amigo/wrist_visual_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/base_plate" reason="Adjacent" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/clavicles" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/elbow_extra_block2_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/elbow_extra_block2_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/elbow_extra_block_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/elbow_extra_block_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/elbow_link4_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/elbow_link4_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger1_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger1_phalanx_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger1_phalanx_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger1_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger1_tip_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger1_tip_phalanx_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger1_tip_phalanx_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger1_tip_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger2_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger2_phalanx_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger2_phalanx_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger2_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger2_tip_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/finger2_tip_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/fore_arm_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/fore_arm_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/fore_arm_top_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/fore_arm_top_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/grippoint_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/grippoint_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/hand_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/hand_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/head" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/lasertop" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/logo" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/neck_pan" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/neck_tilt" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/shoulder_link1_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/shoulder_link1_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/shoulder_link2_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/shoulder_link2_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/shoulder_mount_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/shoulder_mount_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/top_kinect/openni_camera" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/torso" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/torso_assist_slider_back" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/torso_assist_slider_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/torso_assist_slider_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/torso_dummy" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/torso_laser" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/torso_lasertop" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/torso_slider" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/upper_arm_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/upper_arm_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/upper_arm_top_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/upper_arm_top_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/wrist_link6_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/wrist_link6_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/wrist_to_hand_block_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/wrist_to_hand_block_right" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/wrist_visual_left" reason="Never" />
-    <disable_collisions link1="amigo/base_link" link2="amigo/wrist_visual_right" reason="Never" />
     <disable_collisions link1="amigo/base_plate" link2="amigo/clavicles" reason="Never" />
     <disable_collisions link1="amigo/base_plate" link2="amigo/elbow_extra_block2_left" reason="Never" />
     <disable_collisions link1="amigo/base_plate" link2="amigo/elbow_extra_block2_right" reason="Never" />
@@ -471,19 +404,37 @@
     <disable_collisions link1="amigo/clavicles" link2="amigo/elbow_extra_block_right" reason="Never" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/elbow_link4_left" reason="Never" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/elbow_link4_right" reason="Never" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger1_left" reason="User" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger1_phalanx_left" reason="User" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger1_phalanx_right" reason="User" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger1_right" reason="User" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger1_tip_left" reason="User" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger1_tip_phalanx_left" reason="User" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger1_tip_phalanx_right" reason="User" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger1_tip_right" reason="User" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger2_left" reason="Never" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger2_phalanx_left" reason="User" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger2_phalanx_right" reason="User" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger2_right" reason="User" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger2_tip_left" reason="User" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger2_tip_phalanx_left" reason="User" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger2_tip_phalanx_right" reason="User" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/finger2_tip_right" reason="User" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/fore_arm_left" reason="Never" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/fore_arm_right" reason="Never" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/grippoint_right" reason="Never" />
-    <disable_collisions link1="amigo/clavicles" link2="amigo/hand_left" reason="Never" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/hand_left" reason="User" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/hand_right" reason="Never" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/head" reason="Never" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/logo" reason="Never" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/neck_pan" reason="Never" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/neck_tilt" reason="Never" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/shoulder_link1_left" reason="Always" />
+    <disable_collisions link1="amigo/clavicles" link2="amigo/shoulder_link1_right" reason="Always" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/shoulder_link2_left" reason="Never" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/shoulder_link2_right" reason="Never" />
     <disable_collisions link1="amigo/clavicles" link2="amigo/shoulder_mount_left" reason="Default" />
@@ -519,13 +470,16 @@
     <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/finger1_tip_left" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/finger1_tip_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/finger1_tip_phalanx_right" reason="Never" />
-    <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/finger1_tip_right" reason="Never" />
+    <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/finger1_tip_right" reason="User" />
     <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/finger2_left" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/finger2_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/finger2_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/finger2_right" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/finger2_tip_left" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
+    <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
+    <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/finger2_tip_right" reason="Never" />
+    <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/fore_arm_left" reason="Always" />
     <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/fore_arm_right" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/fore_arm_top_left" reason="Default" />
     <disable_collisions link1="amigo/elbow_extra_block2_left" link2="amigo/fore_arm_top_right" reason="Never" />
@@ -584,6 +538,7 @@
     <disable_collisions link1="amigo/elbow_extra_block2_right" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block2_right" link2="amigo/finger2_tip_right" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block2_right" link2="amigo/fore_arm_left" reason="Never" />
+    <disable_collisions link1="amigo/elbow_extra_block2_right" link2="amigo/fore_arm_right" reason="Always" />
     <disable_collisions link1="amigo/elbow_extra_block2_right" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block2_right" link2="amigo/fore_arm_top_right" reason="Default" />
     <disable_collisions link1="amigo/elbow_extra_block2_right" link2="amigo/grippoint_left" reason="Never" />
@@ -691,8 +646,8 @@
     <disable_collisions link1="amigo/elbow_extra_block_right" link2="amigo/finger2_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block_right" link2="amigo/finger2_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block_right" link2="amigo/finger2_right" reason="Never" />
-    <disable_collisions link1="amigo/elbow_extra_block_right" link2="amigo/finger2_tip_left" reason="Never" />
-    <disable_collisions link1="amigo/elbow_extra_block_right" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
+    <disable_collisions link1="amigo/elbow_extra_block_right" link2="amigo/finger2_tip_left" reason="User" />
+    <disable_collisions link1="amigo/elbow_extra_block_right" link2="amigo/finger2_tip_phalanx_left" reason="User" />
     <disable_collisions link1="amigo/elbow_extra_block_right" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block_right" link2="amigo/finger2_tip_right" reason="Never" />
     <disable_collisions link1="amigo/elbow_extra_block_right" link2="amigo/fore_arm_left" reason="Never" />
@@ -844,24 +799,28 @@
     <disable_collisions link1="amigo/elbow_link4_right" link2="amigo/wrist_visual_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/finger1_phalanx_left" reason="Adjacent" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/finger1_phalanx_right" reason="Never" />
-    <disable_collisions link1="amigo/finger1_left" link2="amigo/finger1_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/finger1_right" reason="User" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/finger1_tip_left" reason="Adjacent" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/finger1_tip_phalanx_left" reason="Never" />
-    <disable_collisions link1="amigo/finger1_left" link2="amigo/finger1_tip_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/finger1_tip_phalanx_right" reason="User" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/finger1_tip_right" reason="User" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/finger2_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/finger2_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/finger2_phalanx_right" reason="Never" />
-    <disable_collisions link1="amigo/finger1_left" link2="amigo/finger2_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/finger2_right" reason="User" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/finger2_tip_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/finger2_tip_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/fore_arm_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/fore_arm_right" reason="User" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/grippoint_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/hand_left" reason="Adjacent" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/hand_right" reason="User" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/head" reason="User" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/logo" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/neck_pan" reason="Never" />
@@ -873,7 +832,14 @@
     <disable_collisions link1="amigo/finger1_left" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/top_kinect/openni_camera" reason="Never" />
-    <disable_collisions link1="amigo/finger1_left" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/torso_assist_slider_right" reason="User" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/torso_dummy" reason="User" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/torso_slider" reason="User" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/upper_arm_top_left" reason="Never" />
@@ -881,13 +847,14 @@
     <disable_collisions link1="amigo/finger1_left" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/wrist_link6_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/wrist_to_hand_block_left" reason="Never" />
-    <disable_collisions link1="amigo/finger1_left" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/wrist_to_hand_block_right" reason="User" />
     <disable_collisions link1="amigo/finger1_left" link2="amigo/wrist_visual_left" reason="Never" />
-    <disable_collisions link1="amigo/finger1_left" link2="amigo/wrist_visual_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_left" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/finger1_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/finger1_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/finger1_tip_left" reason="Default" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/finger1_tip_phalanx_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/finger1_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/finger1_tip_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/finger2_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/finger2_phalanx_left" reason="Never" />
@@ -898,15 +865,18 @@
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/finger2_tip_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/fore_arm_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/fore_arm_right" reason="User" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/grippoint_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/hand_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/hand_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/head" reason="User" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/logo" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/neck_pan" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/neck_tilt" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/shoulder_link1_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/shoulder_link1_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/shoulder_link2_left" reason="Never" />
@@ -914,7 +884,14 @@
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/top_kinect/openni_camera" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/torso_assist_slider_right" reason="User" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/torso_slider" reason="User" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/upper_arm_top_left" reason="Never" />
@@ -922,9 +899,9 @@
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/wrist_link6_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/wrist_to_hand_block_left" reason="Never" />
-    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/wrist_to_hand_block_right" reason="User" />
     <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/wrist_visual_left" reason="Never" />
-    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/wrist_visual_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_left" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/finger1_right" reason="Adjacent" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/finger1_tip_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/finger1_tip_phalanx_left" reason="Never" />
@@ -938,6 +915,7 @@
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/finger2_tip_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/fore_arm_left" reason="User" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/fore_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/fore_arm_top_right" reason="Never" />
@@ -945,8 +923,11 @@
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/grippoint_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/hand_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/hand_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/head" reason="User" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/logo" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/neck_pan" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/neck_tilt" reason="User" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/shoulder_link1_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/shoulder_link1_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/shoulder_link2_left" reason="Never" />
@@ -954,15 +935,23 @@
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/top_kinect/openni_camera" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/torso_assist_slider_right" reason="User" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/torso_slider" reason="User" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/upper_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/wrist_link6_right" reason="Never" />
-    <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/wrist_to_hand_block_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/wrist_to_hand_block_left" reason="User" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/wrist_visual_left" reason="User" />
     <disable_collisions link1="amigo/finger1_phalanx_right" link2="amigo/wrist_visual_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/finger1_tip_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/finger1_tip_phalanx_left" reason="Never" />
@@ -976,14 +965,19 @@
     <disable_collisions link1="amigo/finger1_right" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/finger2_tip_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/fore_arm_left" reason="User" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/fore_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/fore_arm_top_right" reason="Never" />
-    <disable_collisions link1="amigo/finger1_right" link2="amigo/grippoint_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/grippoint_left" reason="User" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/grippoint_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/hand_left" reason="User" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/hand_right" reason="Adjacent" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/head" reason="User" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/logo" reason="Never" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/neck_pan" reason="Never" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/neck_tilt" reason="User" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/shoulder_link1_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/shoulder_link1_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/shoulder_link2_left" reason="Never" />
@@ -991,49 +985,73 @@
     <disable_collisions link1="amigo/finger1_right" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/top_kinect/openni_camera" reason="Never" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/torso_assist_slider_right" reason="User" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/torso_slider" reason="User" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/upper_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/upper_arm_top_right" reason="Never" />
-    <disable_collisions link1="amigo/finger1_right" link2="amigo/wrist_link6_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/wrist_link6_left" reason="User" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/wrist_link6_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/wrist_to_hand_block_left" reason="User" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_right" link2="amigo/wrist_visual_left" reason="User" />
     <disable_collisions link1="amigo/finger1_right" link2="amigo/wrist_visual_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/finger1_tip_phalanx_left" reason="Adjacent" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/finger1_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/finger1_tip_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/finger2_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/finger2_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/finger2_phalanx_right" reason="Never" />
-    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/finger2_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/finger2_right" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/finger2_tip_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/finger2_tip_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/fore_arm_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/fore_arm_right" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/grippoint_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/hand_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/hand_right" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/head" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/logo" reason="Never" />
-    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/neck_pan" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/neck_pan" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/neck_tilt" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/shoulder_link1_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/shoulder_link1_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/shoulder_link2_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/shoulder_link2_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/shoulder_mount_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/top_kinect/openni_camera" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/torso_assist_slider_right" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/torso_slider" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/upper_arm_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/upper_arm_right" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/upper_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/wrist_link6_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/wrist_to_hand_block_left" reason="Never" />
-    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/wrist_to_hand_block_right" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/wrist_visual_left" reason="Never" />
-    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/wrist_visual_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_left" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/finger1_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/finger1_tip_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/finger2_left" reason="Never" />
@@ -1045,12 +1063,15 @@
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/finger2_tip_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/fore_arm_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/fore_arm_right" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/grippoint_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/hand_left" reason="Never" />
-    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/lasertop" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/hand_right" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/head" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/lasertop" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/logo" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/neck_pan" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/neck_tilt" reason="Never" />
@@ -1059,18 +1080,28 @@
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/shoulder_link2_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/shoulder_link2_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/shoulder_mount_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/top_kinect/openni_camera" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/torso_assist_slider_right" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/torso_lasertop" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/torso_slider" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/upper_arm_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/upper_arm_right" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/upper_arm_top_left" reason="Never" />
-    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/upper_arm_top_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/upper_arm_top_right" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/wrist_link6_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/wrist_to_hand_block_left" reason="Never" />
-    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/wrist_to_hand_block_right" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/wrist_visual_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_left" link2="amigo/wrist_visual_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/finger1_tip_right" reason="Adjacent" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/finger2_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/finger2_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/finger2_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/finger2_right" reason="Never" />
@@ -1078,15 +1109,19 @@
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/finger2_tip_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/fore_arm_left" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/fore_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/grippoint_right" reason="Never" />
-    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/hand_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/hand_left" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/hand_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/head" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/logo" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/neck_pan" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/neck_tilt" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/shoulder_link1_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/shoulder_link1_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/shoulder_link2_left" reason="Never" />
@@ -1094,8 +1129,15 @@
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/top_kinect/openni_camera" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/torso_assist_slider_right" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/torso_dummy" reason="Never" />
-    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/torso_lasertop" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/torso_slider" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/upper_arm_left" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/upper_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/upper_arm_top_right" reason="Never" />
@@ -1103,21 +1145,29 @@
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/wrist_link6_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/wrist_to_hand_block_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/wrist_to_hand_block_right" reason="Never" />
-    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/wrist_visual_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/wrist_visual_left" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_phalanx_right" link2="amigo/wrist_visual_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/finger2_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/finger2_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/finger2_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/finger2_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/finger2_tip_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/finger2_tip_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/fore_arm_left" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/fore_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/grippoint_right" reason="Never" />
-    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/hand_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/hand_left" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/hand_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/head" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/logo" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/neck_pan" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/neck_tilt" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/shoulder_link1_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/shoulder_link1_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/shoulder_link2_left" reason="Never" />
@@ -1125,32 +1175,44 @@
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/top_kinect/openni_camera" reason="Never" />
-    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/upper_arm_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/torso_assist_slider_right" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/torso_slider" reason="User" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/upper_arm_left" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/upper_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/wrist_link6_right" reason="Never" />
-    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/wrist_to_hand_block_left" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/wrist_to_hand_block_left" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/wrist_visual_left" reason="User" />
     <disable_collisions link1="amigo/finger1_tip_right" link2="amigo/wrist_visual_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/finger2_phalanx_left" reason="Adjacent" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/finger2_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/finger2_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/finger2_tip_left" reason="Adjacent" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/finger2_tip_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/fore_arm_left" reason="Never" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/fore_arm_right" reason="User" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/grippoint_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/hand_left" reason="Adjacent" />
-    <disable_collisions link1="amigo/finger2_left" link2="amigo/hand_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/hand_right" reason="User" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/head" reason="User" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/logo" reason="Never" />
-    <disable_collisions link1="amigo/finger2_left" link2="amigo/neck_pan" reason="Never" />
-    <disable_collisions link1="amigo/finger2_left" link2="amigo/neck_tilt" reason="Never" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/neck_pan" reason="User" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/neck_tilt" reason="User" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/shoulder_link1_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/shoulder_link1_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/shoulder_link2_left" reason="Never" />
@@ -1158,7 +1220,14 @@
     <disable_collisions link1="amigo/finger2_left" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/top_kinect/openni_camera" reason="Never" />
-    <disable_collisions link1="amigo/finger2_left" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/torso_assist_slider_right" reason="User" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/torso_dummy" reason="User" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/torso_slider" reason="Always" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/upper_arm_top_left" reason="Never" />
@@ -1166,9 +1235,9 @@
     <disable_collisions link1="amigo/finger2_left" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/wrist_link6_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/wrist_to_hand_block_left" reason="Never" />
-    <disable_collisions link1="amigo/finger2_left" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/wrist_to_hand_block_right" reason="User" />
     <disable_collisions link1="amigo/finger2_left" link2="amigo/wrist_visual_left" reason="Never" />
-    <disable_collisions link1="amigo/finger2_left" link2="amigo/wrist_visual_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_left" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/finger2_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/finger2_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/finger2_tip_left" reason="Default" />
@@ -1176,14 +1245,18 @@
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/finger2_tip_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/fore_arm_left" reason="Never" />
+    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/fore_arm_right" reason="User" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/grippoint_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/hand_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/hand_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/head" reason="User" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/logo" reason="Never" />
+    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/neck_pan" reason="User" />
+    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/neck_tilt" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/shoulder_link1_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/shoulder_link1_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/shoulder_link2_left" reason="Never" />
@@ -1191,7 +1264,14 @@
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/top_kinect/openni_camera" reason="Never" />
+    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/torso_assist_slider_right" reason="User" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/torso_lasertop" reason="Never" />
+    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/torso_slider" reason="User" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/upper_arm_top_left" reason="Never" />
@@ -1199,22 +1279,27 @@
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/wrist_link6_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/wrist_to_hand_block_left" reason="Never" />
-    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/wrist_to_hand_block_right" reason="User" />
     <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/wrist_visual_left" reason="Never" />
-    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/wrist_visual_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_phalanx_left" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/finger2_right" reason="Adjacent" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/finger2_tip_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/finger2_tip_right" reason="Default" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/fore_arm_left" reason="User" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/fore_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/grippoint_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/hand_left" reason="User" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/hand_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/head" reason="User" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/logo" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/neck_pan" reason="Never" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/neck_tilt" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/shoulder_link1_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/shoulder_link1_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/shoulder_link2_left" reason="Never" />
@@ -1222,28 +1307,41 @@
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/top_kinect/openni_camera" reason="Never" />
-    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/torso_assist_slider_right" reason="User" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/torso_dummy" reason="User" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/torso_slider" reason="User" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/upper_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/wrist_link6_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/wrist_to_hand_block_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/wrist_visual_left" reason="User" />
     <disable_collisions link1="amigo/finger2_phalanx_right" link2="amigo/wrist_visual_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/finger2_tip_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/finger2_tip_phalanx_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/finger2_tip_right" reason="Adjacent" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/fore_arm_left" reason="User" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/fore_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/grippoint_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/hand_left" reason="User" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/hand_right" reason="Adjacent" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/head" reason="User" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/logo" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/neck_pan" reason="Never" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/neck_tilt" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/shoulder_link1_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/shoulder_link1_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/shoulder_link2_left" reason="Never" />
@@ -1251,25 +1349,40 @@
     <disable_collisions link1="amigo/finger2_right" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/top_kinect/openni_camera" reason="Never" />
-    <disable_collisions link1="amigo/finger2_right" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/torso_assist_slider_right" reason="User" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/torso_dummy" reason="User" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/torso_slider" reason="User" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/upper_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/upper_arm_top_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/wrist_link6_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/wrist_to_hand_block_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_right" link2="amigo/wrist_visual_left" reason="User" />
     <disable_collisions link1="amigo/finger2_right" link2="amigo/wrist_visual_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/finger2_tip_phalanx_left" reason="Adjacent" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/finger2_tip_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/fore_arm_left" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/fore_arm_right" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/fore_arm_top_left" reason="Never" />
-    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/fore_arm_top_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/fore_arm_top_right" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/grippoint_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/hand_left" reason="Never" />
-    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/hand_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/hand_right" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/head" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/logo" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/neck_pan" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/neck_tilt" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/shoulder_link1_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/shoulder_link1_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/shoulder_link2_left" reason="Never" />
@@ -1277,25 +1390,38 @@
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/top_kinect/openni_camera" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/torso_assist_slider_right" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/torso_lasertop" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/torso_slider" reason="Always" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/upper_arm_left" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/upper_arm_right" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/upper_arm_top_left" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/wrist_link6_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/wrist_to_hand_block_left" reason="Never" />
-    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/wrist_to_hand_block_right" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/wrist_visual_left" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_left" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/finger2_tip_phalanx_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/finger2_tip_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/fore_arm_left" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/fore_arm_right" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/fore_arm_top_left" reason="Never" />
-    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/fore_arm_top_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/fore_arm_top_right" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/grippoint_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/hand_left" reason="Never" />
-    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/hand_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/hand_right" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/head" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/logo" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/neck_pan" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/neck_tilt" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/shoulder_link1_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/shoulder_link1_right" reason="Never" />
@@ -1304,24 +1430,38 @@
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/top_kinect/openni_camera" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/torso_assist_slider_right" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/torso_slider" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/upper_arm_left" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/upper_arm_right" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/upper_arm_top_left" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/wrist_link6_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/wrist_to_hand_block_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/wrist_to_hand_block_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/wrist_visual_left" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_left" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/finger2_tip_right" reason="Adjacent" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/fore_arm_left" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/fore_arm_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/grippoint_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/hand_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/hand_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/head" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/logo" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/neck_pan" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/neck_tilt" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/shoulder_link1_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/shoulder_link1_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/shoulder_link2_left" reason="Never" />
@@ -1329,7 +1469,15 @@
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/top_kinect/openni_camera" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/torso_assist_slider_right" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/torso_slider" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/upper_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/upper_arm_top_right" reason="Never" />
@@ -1339,30 +1487,52 @@
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/wrist_to_hand_block_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/wrist_visual_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_phalanx_right" link2="amigo/wrist_visual_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/fore_arm_left" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/fore_arm_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/grippoint_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/hand_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/hand_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/head" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/logo" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/neck_pan" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/neck_tilt" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/shoulder_link1_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/shoulder_link1_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/shoulder_link2_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/shoulder_link2_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/shoulder_mount_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/top_kinect/openni_camera" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/torso_assist_slider_right" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/torso_slider" reason="User" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/upper_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/wrist_link6_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/wrist_to_hand_block_left" reason="Never" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/wrist_visual_left" reason="User" />
     <disable_collisions link1="amigo/finger2_tip_right" link2="amigo/wrist_visual_right" reason="Never" />
-    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/fore_arm_right" reason="Never" />
+    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/fore_arm_right" reason="User" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/fore_arm_top_left" reason="Adjacent" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/grippoint_right" reason="Never" />
+    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/hand_left" reason="Always" />
+    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/hand_right" reason="User" />
+    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/head" reason="User" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/logo" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/neck_pan" reason="Never" />
@@ -1374,9 +1544,14 @@
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/top_kinect/openni_camera" reason="Never" />
+    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/torso_assist_slider_left" reason="Always" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/torso_assist_slider_right" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/torso_dummy" reason="Never" />
-    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/torso_laser" reason="Never" />
+    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/torso_slider" reason="User" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/upper_arm_top_left" reason="Never" />
@@ -1384,14 +1559,16 @@
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/wrist_link6_left" reason="Adjacent" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/wrist_link6_right" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/wrist_to_hand_block_left" reason="Never" />
-    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/wrist_to_hand_block_right" reason="User" />
     <disable_collisions link1="amigo/fore_arm_left" link2="amigo/wrist_visual_left" reason="Default" />
-    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/wrist_visual_right" reason="Never" />
+    <disable_collisions link1="amigo/fore_arm_left" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/fore_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/fore_arm_top_right" reason="Adjacent" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/grippoint_left" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/grippoint_right" reason="Never" />
-    <disable_collisions link1="amigo/fore_arm_right" link2="amigo/hand_left" reason="Never" />
+    <disable_collisions link1="amigo/fore_arm_right" link2="amigo/hand_left" reason="User" />
+    <disable_collisions link1="amigo/fore_arm_right" link2="amigo/hand_right" reason="Always" />
+    <disable_collisions link1="amigo/fore_arm_right" link2="amigo/head" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/logo" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/neck_pan" reason="Never" />
@@ -1403,17 +1580,23 @@
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/top_kinect/openni_camera" reason="Never" />
+    <disable_collisions link1="amigo/fore_arm_right" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/fore_arm_right" link2="amigo/torso_assist_slider_back" reason="User" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/torso_assist_slider_left" reason="Never" />
+    <disable_collisions link1="amigo/fore_arm_right" link2="amigo/torso_assist_slider_right" reason="Always" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/fore_arm_right" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/fore_arm_right" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/fore_arm_right" link2="amigo/torso_slider" reason="User" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/upper_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/wrist_link6_right" reason="Adjacent" />
-    <disable_collisions link1="amigo/fore_arm_right" link2="amigo/wrist_to_hand_block_left" reason="Never" />
+    <disable_collisions link1="amigo/fore_arm_right" link2="amigo/wrist_to_hand_block_left" reason="User" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/wrist_to_hand_block_right" reason="Never" />
-    <disable_collisions link1="amigo/fore_arm_right" link2="amigo/wrist_visual_left" reason="Never" />
+    <disable_collisions link1="amigo/fore_arm_right" link2="amigo/wrist_visual_left" reason="User" />
     <disable_collisions link1="amigo/fore_arm_right" link2="amigo/wrist_visual_right" reason="Default" />
     <disable_collisions link1="amigo/fore_arm_top_left" link2="amigo/fore_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/fore_arm_top_left" link2="amigo/grippoint_left" reason="Never" />
@@ -1486,7 +1669,7 @@
     <disable_collisions link1="amigo/fore_arm_top_right" link2="amigo/wrist_visual_right" reason="Never" />
     <disable_collisions link1="amigo/grippoint_left" link2="amigo/grippoint_right" reason="Never" />
     <disable_collisions link1="amigo/grippoint_left" link2="amigo/hand_left" reason="Adjacent" />
-    <disable_collisions link1="amigo/grippoint_left" link2="amigo/hand_right" reason="Never" />
+    <disable_collisions link1="amigo/grippoint_left" link2="amigo/hand_right" reason="User" />
     <disable_collisions link1="amigo/grippoint_left" link2="amigo/head" reason="Never" />
     <disable_collisions link1="amigo/grippoint_left" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/grippoint_left" link2="amigo/logo" reason="Never" />
@@ -1517,7 +1700,7 @@
     <disable_collisions link1="amigo/grippoint_left" link2="amigo/wrist_to_hand_block_right" reason="Never" />
     <disable_collisions link1="amigo/grippoint_left" link2="amigo/wrist_visual_left" reason="Never" />
     <disable_collisions link1="amigo/grippoint_left" link2="amigo/wrist_visual_right" reason="Never" />
-    <disable_collisions link1="amigo/grippoint_right" link2="amigo/hand_left" reason="Never" />
+    <disable_collisions link1="amigo/grippoint_right" link2="amigo/hand_left" reason="User" />
     <disable_collisions link1="amigo/grippoint_right" link2="amigo/hand_right" reason="Adjacent" />
     <disable_collisions link1="amigo/grippoint_right" link2="amigo/head" reason="Never" />
     <disable_collisions link1="amigo/grippoint_right" link2="amigo/lasertop" reason="Never" />
@@ -1536,8 +1719,8 @@
     <disable_collisions link1="amigo/grippoint_right" link2="amigo/torso_assist_slider_left" reason="Never" />
     <disable_collisions link1="amigo/grippoint_right" link2="amigo/torso_assist_slider_right" reason="Never" />
     <disable_collisions link1="amigo/grippoint_right" link2="amigo/torso_dummy" reason="Never" />
-    <disable_collisions link1="amigo/grippoint_right" link2="amigo/torso_laser" reason="Never" />
-    <disable_collisions link1="amigo/grippoint_right" link2="amigo/torso_lasertop" reason="Never" />
+    <disable_collisions link1="amigo/grippoint_right" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/grippoint_right" link2="amigo/torso_lasertop" reason="User" />
     <disable_collisions link1="amigo/grippoint_right" link2="amigo/torso_slider" reason="Never" />
     <disable_collisions link1="amigo/grippoint_right" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/grippoint_right" link2="amigo/upper_arm_right" reason="Never" />
@@ -1549,6 +1732,8 @@
     <disable_collisions link1="amigo/grippoint_right" link2="amigo/wrist_to_hand_block_right" reason="Never" />
     <disable_collisions link1="amigo/grippoint_right" link2="amigo/wrist_visual_left" reason="Never" />
     <disable_collisions link1="amigo/grippoint_right" link2="amigo/wrist_visual_right" reason="Never" />
+    <disable_collisions link1="amigo/hand_left" link2="amigo/hand_right" reason="User" />
+    <disable_collisions link1="amigo/hand_left" link2="amigo/head" reason="User" />
     <disable_collisions link1="amigo/hand_left" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/hand_left" link2="amigo/logo" reason="Never" />
     <disable_collisions link1="amigo/hand_left" link2="amigo/neck_pan" reason="Never" />
@@ -1560,7 +1745,14 @@
     <disable_collisions link1="amigo/hand_left" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/hand_left" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/hand_left" link2="amigo/top_kinect/openni_camera" reason="Never" />
-    <disable_collisions link1="amigo/hand_left" link2="amigo/torso_dummy" reason="Never" />
+    <disable_collisions link1="amigo/hand_left" link2="amigo/torso" reason="Always" />
+    <disable_collisions link1="amigo/hand_left" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/hand_left" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/hand_left" link2="amigo/torso_assist_slider_right" reason="User" />
+    <disable_collisions link1="amigo/hand_left" link2="amigo/torso_dummy" reason="User" />
+    <disable_collisions link1="amigo/hand_left" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/hand_left" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/hand_left" link2="amigo/torso_slider" reason="Always" />
     <disable_collisions link1="amigo/hand_left" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/hand_left" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/hand_left" link2="amigo/upper_arm_top_left" reason="Never" />
@@ -1569,6 +1761,9 @@
     <disable_collisions link1="amigo/hand_left" link2="amigo/wrist_link6_right" reason="Never" />
     <disable_collisions link1="amigo/hand_left" link2="amigo/wrist_to_hand_block_left" reason="Default" />
     <disable_collisions link1="amigo/hand_left" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/hand_left" link2="amigo/wrist_visual_left" reason="Always" />
+    <disable_collisions link1="amigo/hand_left" link2="amigo/wrist_visual_right" reason="Never" />
+    <disable_collisions link1="amigo/hand_right" link2="amigo/head" reason="User" />
     <disable_collisions link1="amigo/hand_right" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/hand_right" link2="amigo/logo" reason="Never" />
     <disable_collisions link1="amigo/hand_right" link2="amigo/neck_pan" reason="Never" />
@@ -1580,13 +1775,24 @@
     <disable_collisions link1="amigo/hand_right" link2="amigo/shoulder_mount_left" reason="Never" />
     <disable_collisions link1="amigo/hand_right" link2="amigo/shoulder_mount_right" reason="Never" />
     <disable_collisions link1="amigo/hand_right" link2="amigo/top_kinect/openni_camera" reason="Never" />
+    <disable_collisions link1="amigo/hand_right" link2="amigo/torso" reason="User" />
+    <disable_collisions link1="amigo/hand_right" link2="amigo/torso_assist_slider_back" reason="User" />
+    <disable_collisions link1="amigo/hand_right" link2="amigo/torso_assist_slider_left" reason="User" />
+    <disable_collisions link1="amigo/hand_right" link2="amigo/torso_assist_slider_right" reason="User" />
+    <disable_collisions link1="amigo/hand_right" link2="amigo/torso_dummy" reason="User" />
+    <disable_collisions link1="amigo/hand_right" link2="amigo/torso_laser" reason="User" />
+    <disable_collisions link1="amigo/hand_right" link2="amigo/torso_lasertop" reason="User" />
+    <disable_collisions link1="amigo/hand_right" link2="amigo/torso_slider" reason="User" />
     <disable_collisions link1="amigo/hand_right" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/hand_right" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/hand_right" link2="amigo/upper_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/hand_right" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/hand_right" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/hand_right" link2="amigo/wrist_link6_right" reason="Adjacent" />
+    <disable_collisions link1="amigo/hand_right" link2="amigo/wrist_to_hand_block_left" reason="User" />
     <disable_collisions link1="amigo/hand_right" link2="amigo/wrist_to_hand_block_right" reason="Default" />
+    <disable_collisions link1="amigo/hand_right" link2="amigo/wrist_visual_left" reason="Never" />
+    <disable_collisions link1="amigo/hand_right" link2="amigo/wrist_visual_right" reason="Always" />
     <disable_collisions link1="amigo/head" link2="amigo/lasertop" reason="Never" />
     <disable_collisions link1="amigo/head" link2="amigo/logo" reason="Never" />
     <disable_collisions link1="amigo/head" link2="amigo/neck_pan" reason="Never" />
@@ -1612,6 +1818,10 @@
     <disable_collisions link1="amigo/head" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/head" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/head" link2="amigo/wrist_link6_right" reason="Never" />
+    <disable_collisions link1="amigo/head" link2="amigo/wrist_to_hand_block_left" reason="User" />
+    <disable_collisions link1="amigo/head" link2="amigo/wrist_to_hand_block_right" reason="User" />
+    <disable_collisions link1="amigo/head" link2="amigo/wrist_visual_left" reason="Never" />
+    <disable_collisions link1="amigo/head" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/lasertop" link2="amigo/logo" reason="Never" />
     <disable_collisions link1="amigo/lasertop" link2="amigo/neck_pan" reason="Never" />
     <disable_collisions link1="amigo/lasertop" link2="amigo/neck_tilt" reason="Never" />
@@ -1878,6 +2088,10 @@
     <disable_collisions link1="amigo/torso" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/torso" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/torso" link2="amigo/wrist_link6_right" reason="Never" />
+    <disable_collisions link1="amigo/torso" link2="amigo/wrist_to_hand_block_left" reason="User" />
+    <disable_collisions link1="amigo/torso" link2="amigo/wrist_to_hand_block_right" reason="User" />
+    <disable_collisions link1="amigo/torso" link2="amigo/wrist_visual_left" reason="User" />
+    <disable_collisions link1="amigo/torso" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/torso_assist_slider_back" link2="amigo/torso_assist_slider_left" reason="Never" />
     <disable_collisions link1="amigo/torso_assist_slider_back" link2="amigo/torso_assist_slider_right" reason="Never" />
     <disable_collisions link1="amigo/torso_assist_slider_back" link2="amigo/torso_dummy" reason="Never" />
@@ -1890,6 +2104,10 @@
     <disable_collisions link1="amigo/torso_assist_slider_back" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/torso_assist_slider_back" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/torso_assist_slider_back" link2="amigo/wrist_link6_right" reason="Never" />
+    <disable_collisions link1="amigo/torso_assist_slider_back" link2="amigo/wrist_to_hand_block_left" reason="User" />
+    <disable_collisions link1="amigo/torso_assist_slider_back" link2="amigo/wrist_to_hand_block_right" reason="User" />
+    <disable_collisions link1="amigo/torso_assist_slider_back" link2="amigo/wrist_visual_left" reason="User" />
+    <disable_collisions link1="amigo/torso_assist_slider_back" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/torso_assist_slider_left" link2="amigo/torso_assist_slider_right" reason="Never" />
     <disable_collisions link1="amigo/torso_assist_slider_left" link2="amigo/torso_dummy" reason="Never" />
     <disable_collisions link1="amigo/torso_assist_slider_left" link2="amigo/torso_laser" reason="Never" />
@@ -1901,7 +2119,9 @@
     <disable_collisions link1="amigo/torso_assist_slider_left" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/torso_assist_slider_left" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/torso_assist_slider_left" link2="amigo/wrist_link6_right" reason="Never" />
+    <disable_collisions link1="amigo/torso_assist_slider_left" link2="amigo/wrist_to_hand_block_left" reason="User" />
     <disable_collisions link1="amigo/torso_assist_slider_left" link2="amigo/wrist_to_hand_block_right" reason="Never" />
+    <disable_collisions link1="amigo/torso_assist_slider_left" link2="amigo/wrist_visual_left" reason="User" />
     <disable_collisions link1="amigo/torso_assist_slider_left" link2="amigo/wrist_visual_right" reason="Never" />
     <disable_collisions link1="amigo/torso_assist_slider_right" link2="amigo/torso_dummy" reason="Never" />
     <disable_collisions link1="amigo/torso_assist_slider_right" link2="amigo/torso_laser" reason="Never" />
@@ -1914,7 +2134,9 @@
     <disable_collisions link1="amigo/torso_assist_slider_right" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/torso_assist_slider_right" link2="amigo/wrist_link6_right" reason="Never" />
     <disable_collisions link1="amigo/torso_assist_slider_right" link2="amigo/wrist_to_hand_block_left" reason="Never" />
+    <disable_collisions link1="amigo/torso_assist_slider_right" link2="amigo/wrist_to_hand_block_right" reason="User" />
     <disable_collisions link1="amigo/torso_assist_slider_right" link2="amigo/wrist_visual_left" reason="Never" />
+    <disable_collisions link1="amigo/torso_assist_slider_right" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/torso_dummy" link2="amigo/torso_laser" reason="Adjacent" />
     <disable_collisions link1="amigo/torso_dummy" link2="amigo/torso_lasertop" reason="Default" />
     <disable_collisions link1="amigo/torso_dummy" link2="amigo/torso_slider" reason="Never" />
@@ -1925,7 +2147,8 @@
     <disable_collisions link1="amigo/torso_dummy" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/torso_dummy" link2="amigo/wrist_link6_right" reason="Never" />
     <disable_collisions link1="amigo/torso_dummy" link2="amigo/wrist_to_hand_block_left" reason="Never" />
-    <disable_collisions link1="amigo/torso_dummy" link2="amigo/wrist_visual_left" reason="Never" />
+    <disable_collisions link1="amigo/torso_dummy" link2="amigo/wrist_to_hand_block_right" reason="User" />
+    <disable_collisions link1="amigo/torso_dummy" link2="amigo/wrist_visual_left" reason="User" />
     <disable_collisions link1="amigo/torso_dummy" link2="amigo/wrist_visual_right" reason="Never" />
     <disable_collisions link1="amigo/torso_laser" link2="amigo/torso_lasertop" reason="Adjacent" />
     <disable_collisions link1="amigo/torso_laser" link2="amigo/torso_slider" reason="Never" />
@@ -1934,22 +2157,32 @@
     <disable_collisions link1="amigo/torso_laser" link2="amigo/upper_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/torso_laser" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/torso_laser" link2="amigo/wrist_link6_left" reason="Never" />
-    <disable_collisions link1="amigo/torso_laser" link2="amigo/wrist_to_hand_block_left" reason="Never" />
-    <disable_collisions link1="amigo/torso_laser" link2="amigo/wrist_visual_left" reason="Never" />
+    <disable_collisions link1="amigo/torso_laser" link2="amigo/wrist_link6_right" reason="Never" />
+    <disable_collisions link1="amigo/torso_laser" link2="amigo/wrist_to_hand_block_left" reason="User" />
+    <disable_collisions link1="amigo/torso_laser" link2="amigo/wrist_to_hand_block_right" reason="User" />
+    <disable_collisions link1="amigo/torso_laser" link2="amigo/wrist_visual_left" reason="User" />
+    <disable_collisions link1="amigo/torso_laser" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/torso_lasertop" link2="amigo/torso_slider" reason="Never" />
     <disable_collisions link1="amigo/torso_lasertop" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/torso_lasertop" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/torso_lasertop" link2="amigo/upper_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/torso_lasertop" link2="amigo/upper_arm_top_right" reason="Never" />
-    <disable_collisions link1="amigo/torso_lasertop" link2="amigo/wrist_link6_left" reason="Never" />
-    <disable_collisions link1="amigo/torso_lasertop" link2="amigo/wrist_to_hand_block_left" reason="Never" />
-    <disable_collisions link1="amigo/torso_lasertop" link2="amigo/wrist_visual_left" reason="Never" />
+    <disable_collisions link1="amigo/torso_lasertop" link2="amigo/wrist_link6_left" reason="User" />
+    <disable_collisions link1="amigo/torso_lasertop" link2="amigo/wrist_link6_right" reason="User" />
+    <disable_collisions link1="amigo/torso_lasertop" link2="amigo/wrist_to_hand_block_left" reason="User" />
+    <disable_collisions link1="amigo/torso_lasertop" link2="amigo/wrist_to_hand_block_right" reason="User" />
+    <disable_collisions link1="amigo/torso_lasertop" link2="amigo/wrist_visual_left" reason="User" />
+    <disable_collisions link1="amigo/torso_lasertop" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/torso_slider" link2="amigo/upper_arm_left" reason="Never" />
     <disable_collisions link1="amigo/torso_slider" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/torso_slider" link2="amigo/upper_arm_top_left" reason="Never" />
     <disable_collisions link1="amigo/torso_slider" link2="amigo/upper_arm_top_right" reason="Never" />
     <disable_collisions link1="amigo/torso_slider" link2="amigo/wrist_link6_left" reason="Never" />
     <disable_collisions link1="amigo/torso_slider" link2="amigo/wrist_link6_right" reason="Never" />
+    <disable_collisions link1="amigo/torso_slider" link2="amigo/wrist_to_hand_block_left" reason="User" />
+    <disable_collisions link1="amigo/torso_slider" link2="amigo/wrist_to_hand_block_right" reason="User" />
+    <disable_collisions link1="amigo/torso_slider" link2="amigo/wrist_visual_left" reason="User" />
+    <disable_collisions link1="amigo/torso_slider" link2="amigo/wrist_visual_right" reason="User" />
     <disable_collisions link1="amigo/upper_arm_left" link2="amigo/upper_arm_right" reason="Never" />
     <disable_collisions link1="amigo/upper_arm_left" link2="amigo/upper_arm_top_left" reason="Adjacent" />
     <disable_collisions link1="amigo/upper_arm_left" link2="amigo/upper_arm_top_right" reason="Never" />
@@ -1989,7 +2222,10 @@
     <disable_collisions link1="amigo/wrist_link6_right" link2="amigo/wrist_to_hand_block_right" reason="Adjacent" />
     <disable_collisions link1="amigo/wrist_link6_right" link2="amigo/wrist_visual_left" reason="Never" />
     <disable_collisions link1="amigo/wrist_link6_right" link2="amigo/wrist_visual_right" reason="Adjacent" />
+    <disable_collisions link1="amigo/wrist_to_hand_block_left" link2="amigo/wrist_to_hand_block_right" reason="Never" />
     <disable_collisions link1="amigo/wrist_to_hand_block_left" link2="amigo/wrist_visual_left" reason="Default" />
+    <disable_collisions link1="amigo/wrist_to_hand_block_left" link2="amigo/wrist_visual_right" reason="Never" />
+    <disable_collisions link1="amigo/wrist_to_hand_block_right" link2="amigo/wrist_visual_left" reason="Never" />
     <disable_collisions link1="amigo/wrist_to_hand_block_right" link2="amigo/wrist_visual_right" reason="Default" />
-    <disable_collisions link1="amigo/wrist_visual_left" link2="amigo/wrist_visual_right" reason="Never" />
+    <disable_collisions link1="amigo/wrist_visual_left" link2="amigo/wrist_visual_right" reason="User" />
 </robot>

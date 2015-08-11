@@ -17,13 +17,11 @@
   <run_depend>moveit_ros_move_group</run_depend>
   <run_depend>moveit_planners_ompl</run_depend>
   <run_depend>moveit_ros_visualization</run_depend>
-  <run_depend>moveit_plugins</run_depend>
   <run_depend>joint_state_publisher</run_depend>
   <run_depend>robot_state_publisher</run_depend>
   <run_depend>xacro</run_depend>
   <build_depend>amigo_description</build_depend>
   <run_depend>amigo_description</run_depend>
-  <run_depend>industrial_trajectory_filters</run_depend>
 
 
   <buildtool_depend>catkin</buildtool_depend>

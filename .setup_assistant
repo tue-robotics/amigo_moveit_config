@@ -1,8 +1,8 @@
 moveit_setup_assistant_config:
   URDF:
     package: amigo_description
-    relative_path: urdf/xacro/amigo.urdf.xacro
+    relative_path: urdf/amigo.urdf
   SRDF:
     relative_path: config/amigo.srdf
   CONFIG:
-    generated_timestamp: 1413920831
+    generated_timestamp: 1439321807
