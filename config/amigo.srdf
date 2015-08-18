@@ -12,8 +12,9 @@
     <group name="left_arm">
         <chain base_link="amigo/base_link" tip_link="amigo/grippoint_left" />
     </group>
-    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="left_tcp" parent_link="amigo/grippoint_left" group="left_arm" parent_group="left_arm" />
+    <group name="left_arm_only">
+        <chain base_link="amigo/torso" tip_link="amigo/grippoint_left" />
+    </group>    
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="virtual_joint" type="planar" parent_frame="amigo/odom" child_link="amigo/base_link" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
