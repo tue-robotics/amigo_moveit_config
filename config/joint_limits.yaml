@@ -34,7 +34,7 @@ joint_limits:
     max_acceleration: 0.2
   torso_joint:
     has_acceleration_limits: true
-    max_acceleration: 0.2
+    max_acceleration: 0.07
   wrist_pitch_joint_left:
     has_acceleration_limits: true
     max_acceleration: 0.5
