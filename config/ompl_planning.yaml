@@ -65,6 +65,19 @@ left_arm:
     - TRRTkConfigDefault
     - PRMkConfigDefault
     - PRMstarkConfigDefault
+left_arm_only:
+  planner_configs:
+    - SBLkConfigDefault
+    - ESTkConfigDefault
+    - LBKPIECEkConfigDefault
+    - BKPIECEkConfigDefault
+    - KPIECEkConfigDefault
+    - RRTkConfigDefault
+    - RRTConnectkConfigDefault
+    - RRTstarkConfigDefault
+    - TRRTkConfigDefault
+    - PRMkConfigDefault
+    - PRMstarkConfigDefault
 right_arm:
   planner_configs:
     - SBLkConfigDefault
